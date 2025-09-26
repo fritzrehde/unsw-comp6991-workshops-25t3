@@ -28,16 +28,18 @@ struct Test2 {
 }
 
 fn count(s: &str) -> HashMap<char, usize> {
+    // Python:
+    // map = defaultdict(lambda: 0)
+    // for c in s:
+    //   map[c] += 1
+
     let mut map = HashMap::new();
     for c in s.chars() {
         // map.entry(c).and_modify(|count| *count += 1).or_insert(1);h
-        let count = map.entry(c).or_insert(0);
-        *count += 1;
+        // let count = map.entry(c).or_insert(0);
+        // *count += 1;
 
-        // Python:
-        // map = defaultdict(lambda: 0)
-        // for c in s:
-        //   map[c] += 1
+        *map.entry(c).or_insert(0) += 1;
     }
     for (k, v) in map.iter() {}
     map
